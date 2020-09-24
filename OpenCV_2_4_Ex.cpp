@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -25,10 +24,10 @@ void load_classifier(CascadeClassifier &cascade, string filename) {
 	}
 	catch (Exception e) {}
 	if (cascade.empty()) {
-		cerr << "¿¡·¯: [" << filename << "] ÆÄÀÏÀ» ÀĞÀ» ¼ö ¾ø½À´Ï´Ù!" << endl;
+		cerr << "ì—ëŸ¬: [" << filename << "] íŒŒì¼ì„ ì½ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤!" << endl;
 		exit(1);
 	}
-	cout << "[" << filename << "] ÀĞ±â ¿Ï·á." << endl;
+	cout << "[" << filename << "] ì½ê¸° ì™„ë£Œ." << endl;
 }
 
 VideoCapture init_camera(int width, int height, int cameraNumber = 0) {
@@ -38,13 +37,13 @@ VideoCapture init_camera(int width, int height, int cameraNumber = 0) {
 	}
 	catch (Exception e) {}
 	if (!capture.isOpened()) {
-		cerr << "¿¡·¯ : Ä«¸Ş¶ó¸¦ ¿­ ¼ö ¾ø½À´Ï´Ù." << endl;
+		cerr << "ì—ëŸ¬ : ì¹´ë©”ë¼ë¥¼ ì—´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
 		exit(1);
 	}
 	capture.set(CV_CAP_PROP_FRAME_WIDTH, width);
 	capture.set(CV_CAP_PROP_FRAME_HEIGHT, height);
 
-	cout << "Ä«¸Ş¶ó ÁØºñ ¿Ï·á (Ä«¸Ş¶ó ¹øÈ£ : " << cameraNumber << ")" << endl;
+	cout << "ì¹´ë©”ë¼ ì¤€ë¹„ ì™„ë£Œ (ì¹´ë©”ë¼ ë²ˆí˜¸ : " << cameraNumber << ")" << endl;
 	return capture;
 }
 
@@ -54,14 +53,14 @@ Mat get_videoframe(VideoCapture capture) {
 	Mat frame;
 	capture.read(frame);
 	if (frame.empty()) {
-		cerr << "ERROR: Ä«¸Ş¶ó¸¦ ¿­ ¼ö ¾ø½À´Ï´Ù. " << endl;
+		cerr << "ERROR: ì¹´ë©”ë¼ë¥¼ ì—´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. " << endl;
 		exit(1);
 	}
 	return frame;
 }
 
 
-Vec3f getEyeball(Mat &eye, vector<Vec3f> &firstpupil)      // µ¿°ø Ã£±â
+Vec3f getEyeball(Mat &eye, vector<Vec3f> &firstpupil)      // ë™ê³µ ì°¾ê¸°
 {
 	vector<int> sums(firstpupil.size(), 0);      //         
 	for (int y = 0; y < eye.rows; y++) {
@@ -306,12 +305,12 @@ int main(int argc, char **argv)
 
 	Mat frame;
 	bool rect_on = false;
-	//È­¸é Å©±â ±¸ÇÏ±â
+	//í™”ë©´ í¬ê¸° êµ¬í•˜ê¸°
 	ZeroMemory(&t, sizeof(SIZE));
 	t.cx = GetSystemMetrics(SM_CXFULLSCREEN);
 	t.cy = GetSystemMetrics(SM_CYFULLSCREEN);
 
-	mousePoint = Point(t.cx / 2, t.cy / 2);//ÇÁ·Î±×·¥ ½ÃÀÛ½Ã È­¸é Á¤ Áß¾Ó¿¡ ¸¶¿ì½º À§Ä¡
+	mousePoint = Point(t.cx / 2, t.cy / 2);//í”„ë¡œê·¸ë¨ ì‹œì‘ì‹œ í™”ë©´ ì • ì¤‘ì•™ì— ë§ˆìš°ìŠ¤ ìœ„ì¹˜
 	int i = 0;
 
 	rect.x = 200;
