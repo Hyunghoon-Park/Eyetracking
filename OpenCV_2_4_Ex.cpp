@@ -106,7 +106,6 @@ Rect getLeftmostEye(vector<Rect> &eyes)
 
 
 
-
 Mat subImage;
 vector<Point> centers, centers2;
 Point firstlastPoint, secondlastPoint;
